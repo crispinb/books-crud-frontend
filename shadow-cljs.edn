@@ -6,7 +6,8 @@
 
  :dependencies
  [[re-frame "1.1.2"]
-  [cider/cider-nrepl "0.25.8"]]
+  [cider/cider-nrepl "0.25.8"]
+  ]
 
  :dev-http {8000 "public"
             }

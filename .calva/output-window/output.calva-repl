@@ -14,7 +14,7 @@
 ;   - `alt+up` and `alt+down` traverse up and down the REPL command history
 ;      when the cursor is after the last contents at the prompt
 ;   - Clojure lines in stack traces are peekable and clickable.
-clj꞉shadow.user꞉> 
+clj꞉shadow.user꞉>  ; Use `alt+enter` to evaluate
 ; Creating cljs repl session...
 ; Connecting cljs repl: shadow-cljs...
 ;   The Calva Connection Log might have more connection progress information.
@@ -22,14 +22,167 @@ clj꞉shadow.user꞉> 
 ; TIPS: You can choose which REPL to use (clj or cljs):
 ;    *Calva: Toggle REPL connection*
 ;    (There is a button in the status bar for this)
-20
+"thing"
+cljs꞉app.core꞉>  ; Use `alt+enter` to evaluate
+"thing"
+cljs꞉app.core꞉> 
+#'app.core/json-object
+cljs꞉app.core꞉> 
+{"thing" "one"}
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/books
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+"#object[Object [object Object]]"
+cljs꞉app.core꞉> 
+#object[Function]
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/get-all-books
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/get-all-books
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/get-all-books
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/handler
+cljs꞉app.core꞉> 
+#'app.core/handler
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/get-all-books
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/handler
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/handler
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/handler
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/handler
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/get-all-books
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/handler
+cljs꞉app.core꞉> 
+#'app.core/handler
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/get-all-books
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/handler
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+nil
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:2:25
+ Use of undeclared Var app.core/prin
+--------------------------------------------------------------------------------
+
+cljs꞉app.core꞉> 
+#'app.core/handler
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/get-all-books
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/handler
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/handler
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/error-handler
+cljs꞉app.core꞉> 
+#'app.core/get-all-books
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
+cljs꞉app.core꞉> 
+#'app.core/handler
+cljs꞉app.core꞉> 
+#object[Object [object Object]]
 cljs꞉app.core꞉> 
 nil
 cljs꞉app.core꞉> 
 nil
 ; ------ REPL Error while processing ---------------------------------------------
+; (defn get-all-books-alt 
+ []
+  (ajax-request
+                          {:uri "http://localhost:8088/api/books"
+                           :method :get
+                           :handler handler
+                           :format (json-request-format)
+                           :response-format (json-response-format {:keywords? true})
+                           :api (js/XMLHttpRequest.)}))
+no source by provide: app.core
+{:provide app.core}
+ExceptionInfo: no source by provide: app.core
+	shadow.build.data/get-source-id-by-provide (data.clj:186)
+	shadow.build.data/get-source-id-by-provide (data.clj:183)
+	shadow.build.data/get-source-by-provide (data.clj:189)
+	shadow.build.data/get-source-by-provide (data.clj:188)
+	shadow.cljs.repl/repl-compile/fn--14658/fn--14659 (repl.clj:459)
+	shadow.cljs.repl/repl-compile/fn--14658 (repl.clj:435)
+	shadow.cljs.repl/repl-compile (repl.clj:433)
+	shadow.cljs.repl/repl-compile (repl.clj:430)
+	shadow.cljs.repl/process-read-result (repl.clj:521)
+	shadow.cljs.repl/process-read-result (repl.clj:497)
+	shadow.cljs.repl/process-input (repl.clj:681)
+	shadow.cljs.repl/process-input (repl.clj:659)
+	shadow.cljs.devtools.server.worker.impl/fn--15187 (impl.clj:754)
+	shadow.cljs.devtools.server.worker.impl/fn--15187 (impl.clj:744)
+	clojure.lang.MultiFn.invoke (MultiFn.java:234)
+	shadow.cljs.devtools.server.util/server-thread/fn--14850/fn--14851/fn--14859 (util.clj:284)
+	shadow.cljs.devtools.server.util/server-thread/fn--14850/fn--14851 (util.clj:283)
+	shadow.cljs.devtools.server.util/server-thread/fn--14850 (util.clj:256)
+	java.lang.Thread.run (Thread.java:834)
+
+cljs꞉app.core꞉> 
+nil
+; ------ REPL Error while processing ---------------------------------------------
 ; (ns app.core
-  (:require [reagent.dom :as rdom]))
+  (:require [reagent.dom :as rdom]
+            [ajax.core :refer [GET ajax-request]]))
 no source by id: [:shadow.build.classpath/resource "app/core.cljs"]
 {:id [:shadow.build.classpath/resource "app/core.cljs"]}
 ExceptionInfo: no source by id: [:shadow.build.classpath/resource "app/core.cljs"]
@@ -95,72 +248,36 @@ ExceptionInfo: no source by id: [:shadow.build.classpath/resource "app/core.cljs
 
 cljs꞉app.core꞉> 
 nil
-; ------ REPL Error while processing ---------------------------------------------
-; (ns app.core
-  (:require [reagent.dom :as rdom]))
-no source by id: [:shadow.build.classpath/resource "app/core.cljs"]
-{:id [:shadow.build.classpath/resource "app/core.cljs"]}
-ExceptionInfo: no source by id: [:shadow.build.classpath/resource "app/core.cljs"]
-	shadow.build.data/get-source-by-id (data.clj:171)
-	shadow.build.data/get-source-by-id (data.clj:168)
-	shadow.build.compiler/remove-dead-js-deps/remove-fn--13299/fn--13300 (compiler.clj:1176)
-	clojure.core/complement/fn--5669 (core.clj:1441)
-	clojure.core/filter/fn--5893 (core.clj:2817)
-	clojure.lang.LazySeq.sval (LazySeq.java:42)
-	clojure.lang.LazySeq.seq (LazySeq.java:51)
-	clojure.lang.ChunkedCons.chunkedNext (ChunkedCons.java:59)
-	clojure.core/chunk-next (core.clj:708)
-	clojure.core.protocols/fn--8154 (protocols.clj:137)
-	clojure.core.protocols/fn--8154 (protocols.clj:124)
-	clojure.core.protocols/fn--8114/G--8109--8123 (protocols.clj:19)
-	clojure.core.protocols/seq-reduce (protocols.clj:31)
-	clojure.core.protocols/fn--8146 (protocols.clj:75)
-	clojure.core.protocols/fn--8146 (protocols.clj:75)
-	clojure.core.protocols/fn--8088/G--8083--8101 (protocols.clj:13)
-	clojure.core/reduce (core.clj:6828)
-	clojure.core/into (core.clj:6895)
-	clojure.core/into (core.clj:6887)
-	shadow.build.compiler/remove-dead-js-deps/remove-fn--13299 (compiler.clj:1178)
-	clojure.core/update (core.clj:6196)
-	clojure.core/update (core.clj:6188)
-	shadow.build.compiler/remove-dead-js-deps/fn--13304/fn--13305 (compiler.clj:1184)
-	clojure.core/map/fn--5866 (core.clj:2753)
-	clojure.lang.LazySeq.sval (LazySeq.java:42)
-	clojure.lang.LazySeq.seq (LazySeq.java:51)
-	clojure.lang.RT.seq (RT.java:535)
-	clojure.core/seq--5402 (core.clj:137)
-	clojure.core.protocols/seq-reduce (protocols.clj:24)
-	clojure.core.protocols/fn--8146 (protocols.clj:75)
-	clojure.core.protocols/fn--8146 (protocols.clj:75)
-	clojure.core.protocols/fn--8088/G--8083--8101 (protocols.clj:13)
-	clojure.core/reduce (core.clj:6828)
-	clojure.core/into (core.clj:6895)
-	clojure.core/into (core.clj:6887)
-	shadow.build.compiler/remove-dead-js-deps/fn--13304 (compiler.clj:1185)
-	clojure.core/update (core.clj:6196)
-	clojure.core/update (core.clj:6188)
-	shadow.build.compiler/remove-dead-js-deps (compiler.clj:1182)
-	shadow.build.compiler/remove-dead-js-deps (compiler.clj:1171)
-	shadow.build.compiler/compile-all (compiler.clj:1425)
-	shadow.build.compiler/compile-all (compiler.clj:1281)
-	shadow.build.api/compile-sources (api.clj:257)
-	shadow.build.api/compile-sources (api.clj:249)
-	shadow.build.api/compile-sources (api.clj:261)
-	shadow.build.api/compile-sources (api.clj:249)
-	shadow.cljs.repl/repl-ns (repl.clj:352)
-	shadow.cljs.repl/repl-ns (repl.clj:332)
-	shadow.cljs.repl/process-read-result (repl.clj:517)
-	shadow.cljs.repl/process-read-result (repl.clj:497)
-	shadow.cljs.repl/process-input (repl.clj:681)
-	shadow.cljs.repl/process-input (repl.clj:659)
-	shadow.cljs.devtools.server.worker.impl/fn--15187 (impl.clj:754)
-	shadow.cljs.devtools.server.worker.impl/fn--15187 (impl.clj:744)
-	clojure.lang.MultiFn.invoke (MultiFn.java:234)
-	shadow.cljs.devtools.server.util/server-thread/fn--14850/fn--14851/fn--14859 (util.clj:284)
-	shadow.cljs.devtools.server.util/server-thread/fn--14850/fn--14851 (util.clj:283)
-	shadow.cljs.devtools.server.util/server-thread/fn--14850 (util.clj:256)
-	java.lang.Thread.run (Thread.java:834)
+; 
+; Execution error (TypeError) at (<cljs repl>:1).
+Cannot read property 'call' of undefined
+cljs꞉app.core꞉> 
+nil
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:7:37
+ Use of undeclared Var app.core/json-request-format
+--------------------------------------------------------------------------------
+
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:8:46
+ Use of undeclared Var app.core/json-response-format
+--------------------------------------------------------------------------------
 
 cljs꞉app.core꞉> 
-#'app.core/main-component
+#'app.core/get-all-books-alt
+cljs꞉app.core꞉> 
+nil
+; 
+; Execution error (Error) at (<cljs repl>:1).
+["unrecognized response format: " nil]
+cljs꞉app.core꞉> 
+nil
+cljs꞉app.core꞉> 
+#'app.core/get-all-books-alt
+cljs꞉app.core꞉> 
+#object[XMLHttpRequest [object XMLHttpRequest]]
+cljs꞉app.core꞉> 
+#'app.core/get-all-books-alt
+cljs꞉app.core꞉> 
+#object[XMLHttpRequest [object XMLHttpRequest]]
 cljs꞉app.core꞉> 
