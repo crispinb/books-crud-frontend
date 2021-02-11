@@ -1,26 +1,27 @@
 (ns app.core
   (:require [reagent.dom :as rdom]
             [re-frame.core :as rf]
+            [day8.re-frame.http-fx]
             [app.components.books :refer [books-component]]
-            [ajax.core :refer [GET]]))
+            [ajax.core :as ajax]))
 
-;; TODO: shift to using non-side-effect based get-books event
-;;       (as per https://day8.github.io/re-frame/Talking-To-Servers/#version-2)
+;; TODO: tidy up, put events in rght plac, etc.
 ;; TODO: book detail (linked)
 ;; TODO: delete
 ;; TODO: add
 ;; TODO: update
 
 ;; TODO: move events to events.cljs
-(rf/reg-event-db
+(rf/reg-event-fx
  :get-books
- (fn [db _]
-   (GET "http://localhost:8088/api/books"
-     {:handler #(rf/dispatch [:books-received %])
-      :error-handler #(rf/dispatch [:book-fetch-failed %])
-      :response-format :json
-      :keywords? true})
-   (assoc db :loading? true)))
+ (fn [{db :db}]
+   {:http-xhrio {:method :get
+                 :uri "http://localhost:8088/api/books"
+                 :response-format (ajax/json-response-format {:keywords? true})
+                 :on-success [:books-received]
+                 :on-failure [:book-fetch-failed]
+                 }}
+   ))
 
 (rf/reg-event-db
  :books-received
@@ -28,7 +29,6 @@
    (let [books (js->clj response)]
      (println (str "books received: " books))
      (assoc db :loading? false)
-   ;; wrong, but will do for a quick ttest
      (assoc db :books books))))
 
 (rf/reg-event-db
@@ -60,5 +60,4 @@
 (comment
   (init))
   ;;
-  
- 
+
