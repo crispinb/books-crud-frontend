@@ -1,24 +1,40 @@
 (ns app.core
   (:require [reagent.dom :as rdom]
             [re-frame.core :as rf]
-            [app.components.books :refer [books-component]]))
+            [app.components.books :refer [books-component]]
+            [ajax.core :refer [GET]]))
 
-;; TODO: replace with data from backend (https://day8.github.io/re-frame/Talking-To-Servers/#version-2)
-;;       - try both their approaches from that article. Note they're using direct js->clj on the ajax response. Perhaps I was wrong to think the JSON comes back in the response as a string? Maybe it's a js object already and that's why I got the errors tryign js/JSON.parse??
+;; TODO: shift to using non-side-effect based get-books event
+;;       (as per https://day8.github.io/re-frame/Talking-To-Servers/#version-2)
 ;; TODO: book detail (linked)
 ;; TODO: delete
 ;; TODO: add
 ;; TODO: update
 
-(def books [{:id 2 :title "fark"  :author "tolstoy"  :publication-date "2020"},
-            {:id 3 :title "another book"  :author "tolstoy"  :publication-date "2020"}
-            {:id 4 :title "yeranuvva book"  :author "tolstoy"  :publication-date "2020"}])
-
+;; TODO: move events to events.cljs
 (rf/reg-event-db
  :get-books
- (fn [db]
-   (println "get-books dispatched")
-   (assoc db :books books)))
+ (fn [db _]
+   (GET "http://localhost:8088/api/books"
+     {:handler #(rf/dispatch [:books-received %])
+      :error-handler #(rf/dispatch [:book-fetch-failed %])
+      :response-format :json
+      :keywords? true})
+   (assoc db :loading? true)))
+
+(rf/reg-event-db
+ :books-received
+ (fn [db [_ response]]
+   (let [books (js->clj response)]
+     (println (str "books received: " books))
+     (assoc db :loading? false)
+   ;; wrong, but will do for a quick ttest
+     (assoc db :books books))))
+
+(rf/reg-event-db
+ :book-fetch-failed
+ (fn [db [_ response]]
+   (println (str "Book fetch failed with error" response))))
 
 (rf/reg-sub
  :books-changed
