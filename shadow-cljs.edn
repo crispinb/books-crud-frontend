@@ -8,6 +8,7 @@
  [[re-frame "1.1.2"]
   [cider/cider-nrepl "0.25.8"]
   [day8.re-frame/http-fx "0.2.2"]
+  [metosin/reitit-frontend "0.5.12"]
   ]
 
  :dev-http {8000 "public"
