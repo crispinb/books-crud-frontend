@@ -5,6 +5,7 @@
             [app.components.books :refer [books-component]]
             [ajax.core :as ajax]))
 
+;; TODO: get the book page to refresh!
 ;; TODO: tidy up, put events in rght plac, etc.
 ;; TODO: book detail (linked)
 ;; TODO: delete
@@ -27,9 +28,9 @@
  :books-received
  (fn [db [_ response]]
    (let [books (js->clj response)]
-     (println (str "books received: " books))
-     (assoc db :loading? false)
-     (assoc db :books books))))
+     (-> db
+         (assoc :loading? false)
+         (assoc :books books)))))
 
 (rf/reg-event-db
  :book-fetch-failed
@@ -52,9 +53,7 @@
   (rdom/render [main-component]
                (.getElementById js/document "reframe-root")))
 
-(defn init
-  []
-  (rf/dispatch [:get-books]))
+(rf/dispatch [:get-books])
 
 
 (comment

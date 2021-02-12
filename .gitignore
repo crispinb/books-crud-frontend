@@ -3,6 +3,7 @@ public/js
 
 .clj-kondo
 .calva
+.lsp
 
 /target
 /checkouts
