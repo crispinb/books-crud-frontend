@@ -1,5 +1,5 @@
 (ns app.components.books
-  (:require [app.components.book :refer [book-row]]))
+  (:require [app.components.book :refer [book-summary-component]]))
 
 (defn books-component
   [books]
@@ -8,4 +8,4 @@
    (doall
     (for [book books]
       [:div {:id :book-row :key (:id book)}
-       [book-row book]]))])
+       [book-summary-component book]]))])
