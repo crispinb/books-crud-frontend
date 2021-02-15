@@ -12,7 +12,7 @@
    :get-books
    (fn [{db :db}]
      {:http-xhrio {:method :get
-                   :uri "http://localhost:8088/api/books"
+                   :uri "http://localhost:8080/api/books"
                    :response-format (ajax/json-response-format {:keywords? true})
                    :on-success [:books-received]
                    :on-failure [:book-fetch-failed]}}))
@@ -30,7 +30,4 @@
    (fn [db [_ response]]
      (println (str "Book fetch failed with error" response))))
 
-  (rf/reg-sub
-   :books-changed
-   (fn [db]
-     (:books db))))
+  )

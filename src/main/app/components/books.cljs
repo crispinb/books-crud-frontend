@@ -3,6 +3,7 @@
 
 (defn books-component
   [books]
+  (println "Books map: " books)
   [:div {:id :books} 
    [:h2 "Books"]
    (doall

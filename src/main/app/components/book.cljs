@@ -10,7 +10,7 @@
    " (" publication-date ")"])
 
 (defn book-detail-component
-  [route-match]
-  (println "Got this match: " route-match)
+  [book]
+  (println "Got this book: " book)
   [:div {:id :book-detail}
    [:span [:p "Some book detail or other"]]])
