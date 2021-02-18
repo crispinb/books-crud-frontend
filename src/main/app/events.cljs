@@ -1,7 +1,6 @@
 (ns app.events
   (:require [re-frame.core :as rf]
-            [ajax.core :as ajax]
-            [day8.re-frame.http-fx]))
+            [superstructor.re-frame.fetch-fx]))
 
 ;; One file's enough for this simple app
 
@@ -10,17 +9,31 @@
   []
   (rf/reg-event-fx
    :get-books
-   (fn [{db :db}]
-     {:http-xhrio {:method :get
-                   :uri "http://localhost:8080/api/books"
-                   :response-format (ajax/json-response-format {:keywords? true})
-                   :on-success [:books-received]
-                   :on-failure [:book-fetch-failed]}}))
+   (fn [_]
+     (tap>  "fetching books ..")
+     {:fetch {:method :get
+              :url "http://localhost:8080/api/books"
+              :mode :cors
+              :response-content-types {#"application/.*json" :json}
+              :on-success [:books-received]
+              :on-failure [:book-fetch-failed]}}))
+
+  (rf/reg-event-fx
+   :delete-book
+   (fn [_]
+     {:fetch {:method :delete
+              :url "http://localhost:8080/api/books/100"
+              :timeout 2000
+              :mode :cors
+              :response-content-types {"application/json" :json}
+              :on-success [:books-received]
+              :on-failure [:book-delete-failed]}}))
 
   (rf/reg-event-db
    :books-received
    (fn [db [_ response]]
-     (let [books (js->clj response)]
+   (tap> "Books received!\nResponse:")(tap> response)
+     (let [books (:body  (js->clj response))]
        (-> db
            (assoc :loading? false)
            (assoc :books books)))))
@@ -28,6 +41,14 @@
   (rf/reg-event-db
    :book-fetch-failed
    (fn [db [_ response]]
-     (println (str "Book fetch failed with error" response))))
+     (tap>  "Book fetch failed with error") (tap>  response)))
 
-  )
+  (rf/reg-event-db
+   :book-delete-failed
+   (fn [_ [_ response]]
+     (tap> "Book delete failed with error")
+     (tap> response))))
+
+(comment 
+  (tap> "test")
+  (+ 10 01))

@@ -11,6 +11,7 @@
 
 
 ;; TODO: delete
+;; TODO: do in the re-frame way
 ;; For the next 2 create a flip from book outline detail to form.
 ;; TODO: add
 ;; TODO: update
@@ -41,7 +42,7 @@
    (if @current-match
      (let [view  (get-in @current-match [:data :view])]
        [view @current-match])
-     [:p "Something's not working (not found? client-side '404'?)"]) 
+     [:p "Something's not working (not found? client-side '404'?)"])
    [:p]
    [:hr]
    [:li [:a {:href (rtfe/href ::frontpage)} "Home"]]])
@@ -58,7 +59,6 @@
     {:name ::book-detail
      :view #'book-detail
      :parameters {:path {:id int?}}}]])
-   
 
 (defn main
   []
@@ -83,5 +83,6 @@
   @current-match
   (println "fark")
   (println "farko")
-  (js/parseInt  "10"))
+  (js/parseInt  "10")
+  ((fn [] println "fark")))
 
