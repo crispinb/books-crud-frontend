@@ -20,13 +20,13 @@
 
   (rf/reg-event-fx
    :delete-book
-   (fn [_]
+   (fn [_ [_ id]]
      {:fetch {:method :delete
-              :url "http://localhost:8080/api/books/100"
+              :url (str  "http://localhost:8080/api/books/" id)
               :timeout 2000
               :mode :cors
-              :response-content-types {"application/json" :json}
-              :on-success [:books-received]
+              :response-content-types {#"application/.*json" :json}
+              :on-success [:get-books]
               :on-failure [:book-delete-failed]}}))
 
   (rf/reg-event-db

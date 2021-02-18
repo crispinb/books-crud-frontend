@@ -10,8 +10,6 @@
              [app.subscriptions :refer [register-subscriptions]]))
 
 
-;; TODO: delete
-;; TODO: do in the re-frame way
 ;; For the next 2 create a flip from book outline detail to form.
 ;; TODO: add
 ;; TODO: update

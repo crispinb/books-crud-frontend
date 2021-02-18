@@ -3,7 +3,8 @@
 
 (defn books-component
   [books]
-  (tap> "Books map: ") (tap> books)(tap> "(those were hte books)")
+  (tap> "Books map: ") (tap> books)
+
   [:div {:id :books}
    [:h2 "Books"]
    (doall

@@ -10,7 +10,7 @@
   [:a {:href (rte/href :app.core/book-detail {:id id}) }  [:i  title]]
    " (" publication-date ")    " 
    [:button  {:type :button 
-              :on-click (fn [e] (.preventDefault e) (rf/dispatch [:delete-book ]))}  "❌"]])
+              :on-click (fn [e] (.preventDefault e) (rf/dispatch [:delete-book id]))}  "❌"]])
 
 (defn book-detail-component
   [book]
