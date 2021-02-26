@@ -23,11 +23,24 @@
    (fn [_ [_ id]]
      {:fetch {:method :delete
               :url (str  "http://localhost:8080/api/books/" id)
-              :timeout 2000
+              :timeout 10000
               :mode :cors
               :response-content-types {#"application/.*json" :json}
               :on-success [:get-books]
               :on-failure [:book-delete-failed]}}))
+  
+  (rf/reg-event-fx
+   :add-book
+   (fn [_ [_ book]]
+     {:fetch {:method :post
+              :url "http://localhost:8080/api/books"
+              :timeout 10000
+              :mode :cors
+              :body book
+              :request-content-type  :json
+              :response-content-types {#"application/.*json" :json}
+              :on-success [:books-received]
+              :on-failure []}}))
 
   (rf/reg-event-db
    :books-received
@@ -50,5 +63,12 @@
      (tap> response))))
 
 (comment 
+ (def testbook {:author "McBurger, Funky"
+                :title "Nest IV"
+                :publication-date "1999"})
+  
+  (rf/dispatch 
+   [:add-book
+    testbook])
   (tap> "test")
   (+ 10 01))

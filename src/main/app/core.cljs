@@ -9,16 +9,20 @@
              [app.events :refer [register-events]]
              [app.subscriptions :refer [register-subscriptions]]))
 
-
-;; For the next 2 create a flip from book outline detail to form.
-;; TODO: add
-;; TODO: update
-;; ;; TODO: convert to proper re-frame approach to loading routes (ie. via events/subs)
-;;        https://gist.github.com/vharmain/a8bbfa5bc601feba0f421959228139a1
-;; TODO: read https://github.com/jacekschae/conduit for ideas 
+;; TODO: rearrange according to Normand's ideas? (eg highly component-ize)
+;; TODO: add - form below book
+;; TODO: update - edit button on
+;; TODO: read https://github.com/jacekschae/conduit for ideas (or make going through this another project?)
 ;; TODO: is there a way to get automatic callbacks when db changes? eg.
 ;;      - hook into  POSTS, OR set a db trigger
 ;;      - then send something (event? websocket?) back to the client
+;; ;; TODO: convert to proper re-frame approach to loading routes (ie. via events/subs)
+;;        https://gist.github.com/vharmain/a8bbfa5bc601feba0f421959228139a1
+;;        - or make this another project?
+;;        Q:
+
+;;        - params to 'rtfe/push-state' (see docs)
+;;        - reitit/simple-frontent 'controllers' (in routes)
 
 
 (defonce current-match (r/atom nil))
